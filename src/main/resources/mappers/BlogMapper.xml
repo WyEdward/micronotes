@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wyedward.dao.BlogMapper" >
+  <resultMap id="BaseResultMap" type="cn.wyedward.domain.Blog" >
+    <id column="blog_id" property="blogId" jdbcType="INTEGER" />
+    <result column="appreciation" property="appreciation" jdbcType="CHAR" />
+    <result column="commentabled" property="commentabled" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="first_picture" property="firstPicture" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="published" property="published" jdbcType="CHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="views" property="views" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="share_statement" property="shareStatement" jdbcType="CHAR" />
+    <result column="recommed" property="recommed" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.wyedward.domain.Blog" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    blog_id, appreciation, commentabled, create_time, description, first_picture, flag, 
+    published, title, update_time, views, type_id, user_id, share_statement, recommed
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from blog
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.wyedward.domain.Blog" >
+    insert into blog (blog_id, appreciation, commentabled, 
+      create_time, description, first_picture, 
+      flag, published, title, 
+      update_time, views, type_id, 
+      user_id, share_statement, recommed, 
+      content)
+    values (#{blogId,jdbcType=INTEGER}, #{appreciation,jdbcType=CHAR}, #{commentabled,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, #{firstPicture,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR}, #{published,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{views,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{shareStatement,jdbcType=CHAR}, #{recommed,jdbcType=CHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wyedward.domain.Blog" >
+    insert into blog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="blogId != null" >
+        blog_id,
+      </if>
+      <if test="appreciation != null" >
+        appreciation,
+      </if>
+      <if test="commentabled != null" >
+        commentabled,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="firstPicture != null" >
+        first_picture,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="published != null" >
+        published,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="shareStatement != null" >
+        share_statement,
+      </if>
+      <if test="recommed != null" >
+        recommed,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="blogId != null" >
+        #{blogId,jdbcType=INTEGER},
+      </if>
+      <if test="appreciation != null" >
+        #{appreciation,jdbcType=CHAR},
+      </if>
+      <if test="commentabled != null" >
+        #{commentabled,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPicture != null" >
+        #{firstPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="published != null" >
+        #{published,jdbcType=CHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="shareStatement != null" >
+        #{shareStatement,jdbcType=CHAR},
+      </if>
+      <if test="recommed != null" >
+        #{recommed,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wyedward.domain.Blog" >
+    update blog
+    <set >
+      <if test="appreciation != null" >
+        appreciation = #{appreciation,jdbcType=CHAR},
+      </if>
+      <if test="commentabled != null" >
+        commentabled = #{commentabled,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPicture != null" >
+        first_picture = #{firstPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="published != null" >
+        published = #{published,jdbcType=CHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="views != null" >
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="shareStatement != null" >
+        share_statement = #{shareStatement,jdbcType=CHAR},
+      </if>
+      <if test="recommed != null" >
+        recommed = #{recommed,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.wyedward.domain.Blog" >
+    update blog
+    set appreciation = #{appreciation,jdbcType=CHAR},
+      commentabled = #{commentabled,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      first_picture = #{firstPicture,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=VARCHAR},
+      published = #{published,jdbcType=CHAR},
+      title = #{title,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      views = #{views,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      share_statement = #{shareStatement,jdbcType=CHAR},
+      recommed = #{recommed,jdbcType=CHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wyedward.domain.Blog" >
+    update blog
+    set appreciation = #{appreciation,jdbcType=CHAR},
+      commentabled = #{commentabled,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      first_picture = #{firstPicture,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=VARCHAR},
+      published = #{published,jdbcType=CHAR},
+      title = #{title,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      views = #{views,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      share_statement = #{shareStatement,jdbcType=CHAR},
+      recommed = #{recommed,jdbcType=CHAR}
+    where blog_id = #{blogId,jdbcType=INTEGER}
+  </update>
+</mapper>
