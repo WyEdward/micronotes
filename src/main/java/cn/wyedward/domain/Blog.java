@@ -5,37 +5,37 @@ import java.util.Date;
 
 public class Blog implements Serializable{
     private static final long serialVersionUID = -3593274334274242450L;
-
+    /** 博客id*/
     private Integer blogId;
-
+    /** 点赞开启*/
     private String appreciation;
-
+    /** 评论开启*/
     private String commentabled;
-
+    /** 创建时间*/
     private Date createTime;
-
+    /** 博客描述*/
     private String description;
-
+    /** 首图*/
     private String firstPicture;
-
+    /** 标记*/
     private String flag;
-
+    /** 是否发布*/
     private String published;
-
+    /** 标题*/
     private String title;
-
+    /** 最后一次更新时间*/
     private Date updateTime;
-
+    /** 浏览次数*/
     private Integer views;
-
+    /** 博客所属类别id*/
     private Integer typeId;
-
+    /** 博客所属用户id*/
     private Integer userId;
-
+    /** 分享开启*/
     private String shareStatement;
-
+    /** 是否被评论*/
     private String recommed;
-
+    /** 内容*/
     private String content;
 
     public Integer getBlogId() {
@@ -164,5 +164,27 @@ public class Blog implements Serializable{
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "blogId=" + blogId +
+                ", appreciation='" + appreciation + '\'' +
+                ", commentabled='" + commentabled + '\'' +
+                ", createTime=" + createTime +
+                ", description='" + description + '\'' +
+                ", firstPicture='" + firstPicture + '\'' +
+                ", flag='" + flag + '\'' +
+                ", published='" + published + '\'' +
+                ", title='" + title + '\'' +
+                ", updateTime=" + updateTime +
+                ", views=" + views +
+                ", typeId=" + typeId +
+                ", userId=" + userId +
+                ", shareStatement='" + shareStatement + '\'' +
+                ", recommed='" + recommed + '\'' +
+                ", content='" + content + '\'' +
+                '}';
     }
 }

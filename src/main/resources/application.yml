@@ -9,5 +9,5 @@ spring:
 #mybatis配置
 mybatis:
   typeAliasesPackage: cn.wyedward.domain
-  mapperLocations: classpath:mapper/*.xml
+  mapperLocations: classpath:mappers/*.xml
   #configLocation: classpath:/mybatis-config.xml

@@ -1,7 +1,9 @@
 package cn.wyedward.dao;
 
 import cn.wyedward.domain.Role;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface RoleMapper {
     int deleteByPrimaryKey(Integer roleId);
 

@@ -1,7 +1,9 @@
 package cn.wyedward.dao;
 
 import cn.wyedward.domain.Comment;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface CommentMapper {
     int deleteByPrimaryKey(Integer commentId);
 

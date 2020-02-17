@@ -1,7 +1,9 @@
 package cn.wyedward.dao;
 
 import cn.wyedward.domain.Type;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface TypeMapper {
     int deleteByPrimaryKey(Integer typeId);
 

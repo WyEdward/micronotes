@@ -24,4 +24,12 @@ public class Type implements Serializable {
     public void setTypeName(String typeName) {
         this.typeName = typeName == null ? null : typeName.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Type{" +
+                "typeId=" + typeId +
+                ", typeName='" + typeName + '\'' +
+                '}';
+    }
 }

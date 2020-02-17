@@ -34,4 +34,13 @@ public class Permission  implements Serializable {
     public void setPermissionName(String permissionName) {
         this.permissionName = permissionName == null ? null : permissionName.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Permission{" +
+                "permissionId=" + permissionId +
+                ", permissionUrl='" + permissionUrl + '\'' +
+                ", permissionName='" + permissionName + '\'' +
+                '}';
+    }
 }

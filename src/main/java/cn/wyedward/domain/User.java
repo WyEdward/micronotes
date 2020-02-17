@@ -5,23 +5,23 @@ import java.util.Date;
 
 public class User implements Serializable {
     private static final long serialVersionUID = 7272818353345462122L;
-
+    /** 用户id*/
     private String userName;
-
+    /** 用户登录账号*/
     private Integer userId;
-
+    /** 用户密码*/
     private String password;
-
+    /** 用户状态*/
     private String status;
-
+    /** 用户创建时间*/
     private Date createTime;
-
+    /** 邮箱*/
     private String email;
-
+    /** 用户头像*/
     private String headPortrait;
-
+    /** 用户昵称*/
     private String nickName;
-
+    /** 最后一次更新时间*/
     private Date updateTime;
 
     public String getUserName() {
@@ -94,5 +94,20 @@ public class User implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", userId=" + userId +
+                ", password='" + password + '\'' +
+                ", status='" + status + '\'' +
+                ", createTime=" + createTime +
+                ", email='" + email + '\'' +
+                ", headPortrait='" + headPortrait + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", updateTime=" + updateTime +
+                '}';
     }
 }

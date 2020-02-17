@@ -24,4 +24,12 @@ public class Tag implements Serializable {
     public void setTagName(String tagName) {
         this.tagName = tagName == null ? null : tagName.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "tagId=" + tagId +
+                ", tagName='" + tagName + '\'' +
+                '}';
+    }
 }

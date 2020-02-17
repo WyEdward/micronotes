@@ -96,4 +96,19 @@ public class Comment implements Serializable {
     public void setAdminComment(String adminComment) {
         this.adminComment = adminComment == null ? null : adminComment.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentId=" + commentId +
+                ", context='" + context + '\'' +
+                ", createTime=" + createTime +
+                ", nickName='" + nickName + '\'' +
+                ", email='" + email + '\'' +
+                ", blogId=" + blogId +
+                ", parentId=" + parentId +
+                ", headPortrait='" + headPortrait + '\'' +
+                ", adminComment='" + adminComment + '\'' +
+                '}';
+    }
 }

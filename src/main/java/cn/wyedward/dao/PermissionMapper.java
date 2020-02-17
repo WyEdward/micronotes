@@ -1,7 +1,9 @@
 package cn.wyedward.dao;
 
 import cn.wyedward.domain.Permission;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface PermissionMapper {
     int deleteByPrimaryKey(Integer permissionId);
 
