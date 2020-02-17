@@ -68,4 +68,19 @@
       permission_name = #{permissionName,jdbcType=VARCHAR}
     where permission_id = #{permissionId,jdbcType=INTEGER}
   </update>
+
+  <!--自定义-->
+  <select id="findByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+        p.permission_id,
+        p.permission_url,
+        p.permission_name
+    FROM
+        permission p
+    LEFT JOIN role_permission rp ON (p.`permission_id` = rp.`pid`)
+    LEFT JOIN role r ON (r.`role_id` = rp.`rid`)
+    LEFT JOIN user_role ur ON (ur.`rid` = r.`role_id`)
+    LEFT JOIN USER u ON (u.`user_id` = ur.`uid`)
+    WHERE u.user_name = #{userName,jdbcType=VARCHAR}
+  </select>
 </mapper>

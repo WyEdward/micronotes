@@ -68,4 +68,18 @@
       role_description = #{roleDescription,jdbcType=VARCHAR}
     where role_id = #{roleId,jdbcType=INTEGER}
   </update>
+
+  <!--自定义-->
+  <!--根据用户名查询用户角色集-->
+  <select id="findByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+      SELECT
+          r.`role_id`,
+          r.`role_name`,
+          r.`role_description`
+      FROM
+          role r
+      LEFT JOIN user_role ur ON (r.`role_id` = ur.`rid`)
+      LEFT JOIN USER u ON (u.`user_id` = ur.`uid`)
+      WHERE u.user_name = #{userName,jdbcType=VARCHAR}
+  </select>
 </mapper>

@@ -1,16 +1,30 @@
 package cn.wyedward.shiro;
 
+import cn.wyedward.dao.PermissionMapper;
+import cn.wyedward.dao.RoleMapper;
 import cn.wyedward.dao.UserMapper;
+import cn.wyedward.domain.Permission;
+import cn.wyedward.domain.Role;
 import cn.wyedward.domain.User;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashSet;
+import java.util.List;
+
+
 public class ShiroRealm extends AuthorizingRealm{
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private RoleMapper roleMapper;
+    @Autowired
+    private PermissionMapper permissionMapper;
     /**
      * 角色和权限验证
      * @param principalCollection
@@ -18,7 +32,29 @@ public class ShiroRealm extends AuthorizingRealm{
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        return null;
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        String userName = user.getUserName();
+        System.out.println("用户" + userName + "获取权限-----ShiroRealm.doGetAuthorizationInfo");
+        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+        //获取用户角色集
+        List<Role> roleList = roleMapper.findByUserName(userName);
+        HashSet<String> roleSet = new HashSet<>();
+        for (Role r : roleList) {
+            roleSet.add(r.getRoleName());
+        }
+        simpleAuthorizationInfo.setRoles(roleSet);
+        //获取用户权限集
+        List<Permission> permissionList = permissionMapper.findByUserName(userName);
+        HashSet<String> permissionSet = new HashSet<>();
+        for (Permission p : permissionList) {
+            permissionSet.add(p.getPermissionName());
+        }
+        simpleAuthorizationInfo.setStringPermissions(permissionSet);
+
+        System.out.println(roleSet);
+        System.out.println(permissionSet);
+        return simpleAuthorizationInfo;
+
     }
 
 
