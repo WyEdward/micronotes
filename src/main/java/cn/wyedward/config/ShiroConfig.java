@@ -53,7 +53,7 @@ public class ShiroConfig {
         //filterChainDefinitionMap.put("/**","authc");
         //用户认证通过或者配置了Remember Me记住用户登录状态后可访问。
         //filterChainDefinitionMap.put("/**", "user")
-        filterChainDefinitionMap.put("/**","anon");
+        filterChainDefinitionMap.put("/**","user");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

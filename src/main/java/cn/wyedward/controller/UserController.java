@@ -17,13 +17,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @ApiOperation(value = "获取用户信息", notes = "根据用户名获取用户信息")
+   /* @ApiOperation(value = "获取用户信息", notes = "根据用户名获取用户信息")
     @GetMapping("/{userName}")
     @ResponseBody
     public User selectByPrimaryKey(@PathVariable(value = "userName") String userName){
         User user = userService.selectByPrimaryKey(userName);
         return user;
-    }
+    }*/
 
     @ApiOperation(value = "测试权限获取用户信息", notes = "测试权限获取用户信息")
     @RequiresPermissions("user:user")
